@@ -1,0 +1,7 @@
+서버에서 컬렉션과 오브젝트를 대상으로한 json 형식 문자열 생성
+1. jackson 라이브러리
+    http://search.maven.org/
+    http://jackson.codehaus.org/1.9.9/javadoc/index.html
+    
+    jackson-core-asl-1.9.10.jar        /WEB-INF/lib  import
+    jackson-mapper-asl-1.9.10.jar

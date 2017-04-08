@@ -1,0 +1,28 @@
+﻿-- 게시판 스키마
+
+Create Table msg_board ( 
+ msg_no     number(7)  not null,              -- 메세지번호(PK) 
+ msg_title  varchar2(100) not null,          -- 제목 
+ msg_writer varchar2(10) not null,           -- 송신자(아이디)
+ msg_receiver varchar2(10) not null,       -- 수신자(아이디)
+ msg_content varchar2(500) not null,                   -- 내용
+ msg_write_date date default sysdate,      -- 송신일
+ msg_receive_date date default sysdate,      -- 수신일
+ constraint pk_msg primary key(msg_no),
+ constraint fr_board_writer foreign key(msg_writer)
+ references member(mem_id),
+  constraint fr_board_receiver foreign key(msg_receiver)
+ references member(mem_id)
+);
+
+
+Create sequence msg_seq maxvalue 9999999;
+
+comment on table msg_board is '메세지 테이블';
+comment on column msg_board.msg_no is '메세지번호(PK)';
+comment on column msg_board.msg_title is '제목';
+comment on column msg_board.msg_writer is '송신자(아이디)';
+comment on column msg_board.msg_receiver is '수신자(아이디)';
+comment on column msg_board.msg_content is '내용';
+comment on column msg_board.msg_write_date is '송신일';
+comment on column msg_board.msg_receive_date is '수신일';

@@ -1,0 +1,14 @@
+DBCP(DataBase Connection pooling)
+1.활용
+ 1.1 어플리케이션 내에서 데이터베이스를 대상으로 접근 및 활용시
+      요구되는 커넥션 생성 처리는 쿼리 질의 시간보다
+      더 오랜 오버헤드(로직 처리시 예상하지 못한 소요시간)가
+      걸릴 수 있음.
+ 1.2 DBCP를 활용해서 해당 서버의 하드웨어 스펙에 정형화된 환경하에서
+      활용될 커넥션을 미리 생성 후에 비지니스 로직에 제공 및 반환천리
+      반복.
+2.설정
+ 2.1 라이브러리 취득
+     http://commons.apache.org
+     commomns-pool-1.6jar        /WEB_INF/lib import
+     commomns-dbcp-1.6jar

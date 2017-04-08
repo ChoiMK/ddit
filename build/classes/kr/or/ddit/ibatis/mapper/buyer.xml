@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap    
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+ 	<sqlMap namespace = "buyer">
+ 	  <typeAlias alias="buyerVO" type="kr.or.ddit.vo.BuyerVO"/>
+ 	  <sql id = "selectALL">
+ 	  	SELECT *
+ 	  	 FROM BUYER
+ 	  	 WHERE BUYER_DELETE = 'n'
+ 	  </sql>
+ 	  
+ 	  <select id = "buyerList" resultClass="buyerVO">
+		 	SELECT  BUYER_ID
+			      ,BUYER_NAME
+			      ,LPROD_NM
+			      ,BUYER_CHARGER
+			      ,BUYER_COMTEL
+			      ,BUYER_MAIL
+			FROM BUYER
+			INNER JOIN LPROD ON(BUYER_LGU = LPROD_GU)
+			WHERE BUYER_DELETE = 'n'
+			
+ 	  </select>
+ 	  
+ 	  <select id="lprodList" resultClass="kr.or.ddit.vo.LprodVO">
+ 	  		SELECT LPROD_NM,
+ 	  				LPROD_GU
+ 	  		FROM LPROD
+ 	  </select>
+ 	  
+ 	  <select id="buyerInfo" resultClass="buyerVO" parameterClass="map">
+ 	  	<include refid="selectALL"/>
+ 	  		AND BUYER_ID = #buyer_id#
+ 	  </select>	  
+ 	  
+ 	  <update id="updateBuyer" parameterClass="buyerVO">
+ 	    UPDATE BUYER
+      	SET  
+	          BUYER_NAME = #buyer_name#
+	         ,BUYER_CHARGER = #buyer_charger#
+	         ,BUYER_BANK = #buyer_bank#
+	         ,BUYER_ADD1 = #buyer_add1#
+	         ,BUYER_ADD2 = #buyer_add2#
+	         ,BUYER_COMTEL = #buyer_comtel#
+	         ,BUYER_FAX = #buyer_fax#
+	         ,BUYER_MAIL = #buyer_mail#
+   		WHERE BUYER_ID = #buyer_id#
+ 	  </update>
+ 	  
+ 	  <insert id="insertBuyer" parameterClass="buyerVO">
+ 	  	INSERT INTO BUYER(BUYER_ID, BUYER_NAME, BUYER_LGU, BUYER_CHARGER, BUYER_BANK, BUYER_ADD1, BUYER_ADD2, BUYER_COMTEL, BUYER_FAX, BUYER_MAIL)
+ 	  	VALUES(#buyer_id#, #buyer_name#, #buyer_lgu#, #buyer_charger#, #buyer_bank#, #buyer_add1#, #buyer_add2#, #buyer_comtel#, #buyer_fax#, #buyer_mail#)
+ 	  </insert>
+ 	  
+ 	  <update id="deleteBuyer" parameterClass="map">
+ 	  	UPDATE BUYER
+ 	  		SET BUYER_DELETE = 'y'
+ 	  	WHERE BUYER_ID = #buyer_id#
+ 	  		
+ 	  </update>
+ 	</sqlMap>

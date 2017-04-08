@@ -1,0 +1,70 @@
+부트스트랩의 활용
+
+1. 정의 : 반응형/비반응형 웹 어플리케이션 및 모바일 어플리케이션 개발을위한
+         html, css, javascript 프레임웍.
+         
+2. 다운로드
+       최신버젼 : http://getbootstrap.com/ 
+                bootstrap-3.3.5.zip 다운로드
+       한글화버젼 : 영문
+                  http://getbootstrap.com/2.3.2/index.html
+                    한글
+                  http://maczniak.github.io/bootstrap/index.html
+   * 참고 : http://www.w3schools.com/bootstrap/
+  
+3. 설치
+   bootstrap-3.3.5.zip 다운로드 및 압축 해제.
+		WebContent/bootstrap 폴더 작성 및 압축 파일 추가.(에러발생 폴더 및 파일 삭제)
+		jsp 파일내 추가
+		 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap.min.css" >
+		 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/dist/css/bootstrap-theme.min.css">
+		 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		 <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/dist/js/bootstrap.min.js"></script>
+   or
+   BootStrap CDN 활용       
+       jsp 파일내 추가
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
+
+4. 부트스트랩 무료 테마
+   https://shapebootstrap.net/free-templates (회원가입)
+   또는
+   http://themifycloud.com/demos/templates/KAdmin/KAdmin-Dark/index.html
+   http://themifycloud.com/demos/templates/janux/ui.html
+
+      ex.) KAdmin - Free Responsive Admin Dashboard 선택-> [Live Demo 선택] 또는 다운로드
+           kadmin-free-responsive-admin-dashboard-template.zip	
+           KAdmin 설치
+              압축파일에서 KAdmin -> KAdmin-Dark -> fonts -> 폴더 활용
+                                                 images
+                                                 script
+                                                 styles 
+   또는
+   http://shapebootstrap.net/item/1524955-janux-free-responsive-admin-dashboard-template/live-demo
+4. jsp의 html5 템플릿 추가
+   4.1 템플릿 설정.
+      4.1.1 eclipse jsp 템플릿 활용.
+	       [Window] -> [Preferences] -> [Web] -> [JSP Files] -> [Editor] -> [Templates] -> [New 버튼]
+	       -> 설정
+	          Name        New JSP File(Html5)          
+	          Context     [New JSP]
+	          Description JSP With html5 markup
+	          Pattern     <%@ page language="JAVA" contentType="text/html; charset=${encoding}"
+	                          pageEncoding="${encoding}"%>
+						  <!DOCTYPE html>
+						  <html>
+						  <head>
+						  <meta charset="${encoding}">
+						  <title>Insert title here</title>
+						  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
+						  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+						  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+						  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+						  </head>
+						  <body>
+						  ${cursor} 
+						  </body>
+						  </html>
+						  

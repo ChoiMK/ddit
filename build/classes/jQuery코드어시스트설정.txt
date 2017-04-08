@@ -1,0 +1,21 @@
+eclipse 내 jQuery 코드 어시스트 윈도우 활용
+1. http://code.google.com/a/eclipselabs.org/p/jquerywtp/downloads/list
+   download jqueryWTP1.20foEN.zip => jqueryWTP1.20foEN.jar
+   
+2. cmd -> download path -> java -jar jqueryWTP1.20foEN.jar 실행
+
+3. 실행 윈도우 Jar File 항목의 [Browse]
+      자신이 활용하고 있는 이클립스\plugins\org.eclipse.wst.jsdt.core_1.3.200.v201409111605.jar 선택
+      
+4. 실행 윈도우 OutPut Dir 항목의 [Browse]
+     jquery 코드 어시스트 관련 라이브러리가 추가된 jar 파일을 작성 및 저장할 패스 선택
+     
+5. 실행 윈도우 [Generate] 클릭
+
+6. 제너레이트된 라이브러리를 자신이 활용하고 있는 이클립스\plugins\덮어쓰기
+
+7. 이클립스 닫기
+
+8. 자신이 활용하고 있는 워크스페이스\.metadata\.plugins\org.eclipse.wst.jsdt.core 삭제
+
+9. 이클립스 다시 시작     

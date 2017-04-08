@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>ddit</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+<!--해당 어플리케이션 전역에서 활용될 상수  -->
+<context-param>
+	<param-name>oracleDriver</param-name>
+	<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+</context-param>
+<context-param>
+	<param-name>oracleURL</param-name>
+	<param-value>jdbc:oracle:thin:@localhost:1521:XE</param-value>
+</context-param>
+
+<context-param>
+	<param-name>MySqlDriver</param-name>
+	<param-value>com.mysql.jdbc.Driver</param-value>
+</context-param>
+<context-param>
+	<param-name>MySqlURL</param-name>
+	<param-value>jdbc:mysql://localhost:3306/DB명</param-value>
+</context-param>
+
+<!--
+	에러처리 우선순위 : 1. errorPage 및 isErrorPage = "true" 설정 에러처리
+					2. web.xml 내 exception type으로 설정 에러처리
+					3. web.xml 내 error code로 설정 에러처리(O)
+  -->
+
+
+<error-page>
+	<exception-type>java.lang.NullPointerException</exception-type>
+	<location>/error/error500.jsp</location>
+</error-page>
+
+<error-page>
+	<exception-type>java.lang.ArithmeticException</exception-type>
+	<location>/error/error500.jsp</location>
+</error-page>
+
+<error-page>
+	<error-code>404</error-code>
+	<location>/error/error404.jsp</location>
+</error-page>
+
+<error-page>
+	<error-code>500</error-code>
+	<location>/error/error500.jsp</location>
+</error-page>
+
+<!-- default session 만료시간 30분 설정 : 분단위 설정 -->
+<session-config>
+	<session-timeout>60</session-timeout>
+</session-config>
+
+
+<filter>
+	<filter-name>ipCheckFilter</filter-name>
+	<filter-class>kr.or.ddit.filter.IPCheckFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>ipCheckFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>kr.or.ddit.filter.EncodingFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<filter>
+	<filter-name>fileUploadFilter</filter-name>
+	<filter-class>kr.or.ddit.filter.FileUploadFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>fileUploadFilter</filter-name>
+	<url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+
+
+
+</web-app>

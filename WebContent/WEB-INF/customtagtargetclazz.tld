@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+		http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+		version="2.0">
+	<tlib-version>1.0</tlib-version>
+	<short-name>customtagtargetclazz</short-name>
+	<uri>http://www.ddit.or.kr/custom/tag/customtagtargetclazz</uri>
+	<function>
+		<description>charCount의 활용</description>
+		<name>charCount</name>	<function-class>kr.or.ddit.utils.CustomTagTargetClazz</function-class>
+		<function-signature>java.lang.Integer charCount(java.lang.String, java.lang.String)</function-signature>
+		<example>
+			<![CDATA[
+				${customtagtargetclazz:charCount(java.lang.String, java.lang.String)}
+			]]>
+		</example>
+	</function>
+	<function>
+		<description>plus의 활용</description>
+		<name>plus</name>	<function-class>kr.or.ddit.utils.CustomTagTargetClazz</function-class>
+		<function-signature>java.lang.Integer plus(java.lang.Integer, java.lang.Integer)</function-signature>
+		<example>
+			<![CDATA[
+				${customtagtargetclazz:plus(java.lang.Integer, java.lang.Integer)}
+			]]>
+		</example>
+	</function>
+	<function>
+		<description>today의 활용</description>
+		<name>today</name>	<function-class>kr.or.ddit.utils.CustomTagTargetClazz</function-class>
+		<function-signature>java.lang.String today(java.util.Date)</function-signature>
+		<example>
+			<![CDATA[
+				${customtagtargetclazz:today(java.util.Date)}
+			]]>
+		</example>
+	</function>
+	<function>
+		<description>equals의 활용</description>
+		<name>equals</name>	<function-class>kr.or.ddit.utils.CustomTagTargetClazz</function-class>
+		<function-signature>boolean equals(java.lang.Object)</function-signature>
+		<example>
+			<![CDATA[
+				${customtagtargetclazz:equals(java.lang.Object)}
+			]]>
+		</example>
+	</function>
+</taglib>

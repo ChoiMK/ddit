@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- iBatis 설정                        -->
+<!-- << 개정이력(Modification Information) >>            -->
+<!--  수정일       수정자          수정내용              -->
+<!--  =======      =======     =====================     -->
+<!--  2017.03.21.  최민규       최초작성                 -->
+<!-- Copyright (c) 2016 by DDIT  All right reserved      -->
+
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<properties resource="kr/or/ddit/ibatis/config/SqlMapConfig.properties" />
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" maxRequests="32" maxSessions="10"
+		maxTransactions="5" useStatementNamespaces="true" />
+	
+	<transactionManager type="JDBC">
+<!-- 	    <dataSource type="SIMPLE">  -->
+<!-- 			<property name="JDBC.Driver" value="${driver}" /> -->
+<!-- 			<property name="JDBC.ConnectionURL" value="${url}" /> -->
+<!-- 			<property name="JDBC.Username" value="${username}" /> -->
+<!-- 			<property name="JDBC.Password" value="${password}" /> -->
+<!-- 		</dataSource>  -->
+<!-- 		<dataSource type="DBCP"> -->
+<!-- 			<property name="driverClassName" value="${driver}"/> -->
+<!-- 			<property name="url" value="${url}"/> -->
+<!-- 			<property name="username" value="${username}"/> -->
+<!-- 			<property name="password" value="${password}"/> -->
+<!-- 			<property name="maxActive" value="10"/> -->
+<!-- 			<property name="maxWait" value="-1"/> -->
+<!-- 			<property name="removeAbandoned" value="true"/> -->
+<!-- 			<property name="removeAbandonedTimeout" value="60"/> -->
+<!-- 			<property name="logAbandoned" value="true"/> -->
+<!-- 		</dataSource> -->
+			<dataSource type="JNDI">
+				<property name="DBJndiContext" value="java:comp/env/jdbc/ddit"/>
+			</dataSource>
+	</transactionManager>
+	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/member.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/buyer.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/freeBoard.xml"/>
+</sqlMapConfig>
+
+
+
+
+
+
