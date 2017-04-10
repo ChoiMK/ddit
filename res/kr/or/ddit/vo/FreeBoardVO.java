@@ -3,6 +3,7 @@ package kr.or.ddit.vo;
 import java.util.List;
 
 public class FreeBoardVO {
+	private String rnum;
 	private String bo_no;
 	private String bo_title;
 	private String bo_writer;
@@ -19,6 +20,12 @@ public class FreeBoardVO {
 	private String bo_depth;
 	private List<FileItemVO> attachFileItemList;
 	
+	public String getRnum() {
+		return rnum;
+	}
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
+	}
 	public String getBo_no() {
 		return bo_no;
 	}

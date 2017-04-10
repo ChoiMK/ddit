@@ -97,56 +97,56 @@ session mem_id : <c:out value="${sesMemberInfo.mem_id }"></c:out>
 <br/>
 pageContext mem_id : ${pageMemberInfo.mem_id }<br/>
 request mem_id : ${reqMemberInfo.mem_id }<br/>
-<%
-   List<MemberVO> memberList = service.getMemberList();
-%>
-<c:set var="memberList" value="<%=memberList %>"></c:set>
-<table>
-   <thead>
-      <tr>
-         <th>아이디</th>
-         <th>이름</th>
-         <th>생일</th>
-         <th>직업</th>
-         <th>취미</th>
-      </tr>
-   </thead>
-   <tbody>
-   <c:forEach items="${pageScope.memberList }" var="memberVO" >
-      <tr>
-         <td>${memberVO.mem_id }</td>
-         <td>${memberVO.mem_name }</td>
-         <td>${memberVO.mem_bir }</td>
-         <td>${memberVO.mem_job }</td>
-         <td>${memberVO.mem_like }</td>
-      </tr>
-   </c:forEach>
-   </tbody>
-</table>
-<%-- 쿠키생성(mem_id=a001;path=/;) : ${cookie.mem_id.value }<br/> --%>
-<%-- 쿠키생성(mem_pass=0000;path=/ddit/12/;) : ${cookie.mem_pass.value }<br/> --%>
-<!-- Cookie[] cookies = request.getCookies(); -->
-<c:forEach items="${cookie }" var="currentCookie">
-${currentCookie.key } : ${currentCookie.value.value }<br/>
-</c:forEach>
+<%-- <% --%>
+//    List<MemberVO> memberList = service.getMemberList();
+<%-- %> --%>
+<%-- <c:set var="memberList" value="<%=memberList %>"></c:set> --%>
+<!-- <table> -->
+<!--    <thead> -->
+<!--       <tr> -->
+<!--          <th>아이디</th> -->
+<!--          <th>이름</th> -->
+<!--          <th>생일</th> -->
+<!--          <th>직업</th> -->
+<!--          <th>취미</th> -->
+<!--       </tr> -->
+<!--    </thead> -->
+<!--    <tbody> -->
+<%--    <c:forEach items="${pageScope.memberList }" var="memberVO" > --%>
+<!--       <tr> -->
+<%--          <td>${memberVO.mem_id }</td> --%>
+<%--          <td>${memberVO.mem_name }</td> --%>
+<%--          <td>${memberVO.mem_bir }</td> --%>
+<%--          <td>${memberVO.mem_job }</td> --%>
+<%--          <td>${memberVO.mem_like }</td> --%>
+<!--       </tr> -->
+<%--    </c:forEach> --%>
+<!--    </tbody> -->
+<!-- </table> -->
+<%-- <%-- 쿠키생성(mem_id=a001;path=/;) : ${cookie.mem_id.value }<br/> --%> --%>
+<%-- <%-- 쿠키생성(mem_pass=0000;path=/ddit/12/;) : ${cookie.mem_pass.value }<br/> --%> --%>
+<!-- <!-- Cookie[] cookies = request.getCookies(); --> -->
+<%-- <c:forEach items="${cookie }" var="currentCookie"> --%>
+<%-- ${currentCookie.key } : ${currentCookie.value.value }<br/> --%>
+<%-- </c:forEach> --%>
 
-<%-- <jsp:include page="/02/resultGugudan.jsp?dan=5"/> --%>
-<!-- request.setAttribute("gugudan", "02/resultGugudan.jsp 포워딩 후 취득한 html 코드"); -->
-<c:import url="/02/resultGugudan.jsp" var="gugudan" scope="request">
-   <c:param name="dan" value="5"></c:param>
-</c:import>
-${gugudan }<br/>
+<%-- <%-- <jsp:include page="/02/resultGugudan.jsp?dan=5"/> --%> --%>
+<!-- <!-- request.setAttribute("gugudan", "02/resultGugudan.jsp 포워딩 후 취득한 html 코드"); --> -->
+<%-- <c:import url="/02/resultGugudan.jsp" var="gugudan" scope="request"> --%>
+<%--    <c:param name="dan" value="5"></c:param> --%>
+<%-- </c:import> --%>
+<%-- ${gugudan }<br/> --%>
 
-<c:url value="/02/resultGugudan.jsp" var="resultGugudan">
-	<c:param name="dan" value="2"></c:param>
-</c:url>
-<a href="${resultGugudan }">2단</a>
+<%-- <c:url value="/02/resultGugudan.jsp" var="resultGugudan"> --%>
+<%-- 	<c:param name="dan" value="2"></c:param> --%>
+<%-- </c:url> --%>
+<%-- <a href="${resultGugudan }">2단</a> --%>
 
-<c:catch var="errorMsg">
-<%
-	int i = 1/0;	
-%>
-</c:catch>
-${errorMsg}<br/>
+<%-- <c:catch var="errorMsg"> --%>
+<%-- <% --%>
+// 	int i = 1/0;	
+<%-- %> --%>
+<%-- </c:catch> --%>
+<%-- ${errorMsg}<br/> --%>
 </body>
 </html>

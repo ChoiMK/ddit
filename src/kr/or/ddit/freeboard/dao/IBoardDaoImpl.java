@@ -81,4 +81,29 @@ public class IBoardDaoImpl implements IBoardDao {
 		return (FileItemVO) client.queryForObject("board.fileitemInfo", params);
 	}
 
+	@Override
+	public void insertBoardReplyInfo(FreeBoardVO freeboardInfo)
+			throws SQLException {
+		// 부모 게시글 : bo_group, bo_depth, bo_seq
+		// 자식 게시글 : bo_title, bo_nickName, bo_content, bo_mail .....
+		String bo_seq = "";
+		if("0".intern() == freeboardInfo.getBo_seq().intern()){
+		  bo_seq = (String)client.queryForObject("board.incrementSeq",freeboardInfo);
+		}else{
+			client.update("board.updateSeq",freeboardInfo);
+			bo_seq = String.valueOf(Integer.parseInt(freeboardInfo.getBo_seq()) + 1); 
+		}
+		freeboardInfo.setBo_seq(bo_seq);
+		
+		freeboardInfo.setBo_depth(String.valueOf(Integer.parseInt(freeboardInfo.getBo_depth())+1));
+		
+		client.insert("board.insertReplyInfo",freeboardInfo);
+		
+	}
+
+	@Override
+	public int getTotalCount(Map<String, String> params) throws SQLException {
+		return (int)client.queryForObject("board.totalCount",params);
+	}
+
 }

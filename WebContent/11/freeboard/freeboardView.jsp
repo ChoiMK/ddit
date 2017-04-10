@@ -62,6 +62,19 @@ $(function(){
     	$(location).attr('href','${pageContext.request.contextPath}/11/freeboard/deleteBoardInfo.jsp?bo_no=${boardInfo.bo_no}');
     });
     
+    $('#reply').click(function(){
+    	var $frm = $('<form action="${pageContext.request.contextPath}/11/main.jsp?contentPage=/11/freeboard/freeboardReplyForm.jsp" method="post">')
+    	$frm.append('<input type="hidden" name="rnum" value="${param.rnum}"/>');
+    	$frm.append('<input type="hidden" name="bo_title" value="${boardInfo.bo_title}"/>');
+    	$frm.append('<input type="hidden" name="bo_group" value="${boardInfo.bo_group}"/>');
+    	$frm.append('<input type="hidden" name="bo_depth" value="${boardInfo.bo_depth}"/>');
+    	$frm.append('<input type="hidden" name="bo_seq" value="${boardInfo.bo_seq}"/>');
+    	$(document.body).append($frm);
+    	$frm.submit();
+    	
+    	
+//     	$(location).attr('href','${pageContext.request.contextPath}/11/main.jsp?contentPage=/11/freeboard/freeboardReplyForm.jsp?rnum=${param.rnum}&bo_title=${boardInfo.bo_title}&bo_group=${boardInfo.bo_group}&bo_depth=${boardInfo.bo_depth}&bo_seq=${boardInfo.bo_seq}')
+    });
    
     
 
@@ -136,7 +149,7 @@ $(function(){
 				<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>
 				<button type="submit" class="btn btn-default" style="float: right">수정</button>
 			</c:if>
-			<button type="button" class="btn btn-primary">답글</button>
+			<button type="button" class="btn btn-primary" id="reply">댓글</button>
 			<button type="button" id="list" class="btn btn-info">목록</button>
 			
 		</div>

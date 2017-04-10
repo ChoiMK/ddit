@@ -15,4 +15,6 @@ public interface IBoardService {
 	public int deleteBoardInfo(Map<String, String> params);
 	public int updateBoardInfo(FreeBoardVO boardInfo);
 	public FileItemVO getFileItemInfo(Map<String, String> params);
+	public void insertBoardReplyInfo(FreeBoardVO freeboardInfo);
+	public int getTotalCount(Map<String, String> params);
 }

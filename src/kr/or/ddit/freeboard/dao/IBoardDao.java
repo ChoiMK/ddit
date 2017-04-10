@@ -14,4 +14,6 @@ public interface IBoardDao {
 	public int deleteBoardInfo(Map<String, String> params) throws SQLException;
 	public int updateBoardInfo(FreeBoardVO boardInfo) throws SQLException;
 	public FileItemVO getFileItemInfo(Map<String, String> params) throws SQLException;
+	public void insertBoardReplyInfo(FreeBoardVO freeboardInfo) throws SQLException;
+	public int getTotalCount(Map<String, String> params) throws SQLException;
 }

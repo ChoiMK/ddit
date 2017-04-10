@@ -30,28 +30,50 @@
     		 FROM FREEBOARD
     		 WHERE BO_STATUS = 'y'
     	</sql>
+    	
+    	<sql id="searchCondition">
+	    	<dynamic prepend="AND">
+	     			<isNotEmpty property="search_keycode">
+	     				<isNotEmpty property="search_keyword">
+	     					<isEqual property="search_keycode" compareValue="TOTAL">
+	     						<include refid="selectAll"/>
+	     					</isEqual>
+	     					<isEqual property="search_keycode" compareValue="TITLE">
+	     						BO_TITLE like '%'||#search_keyword#||'%'
+	     					</isEqual>
+	     					<isEqual property="search_keycode" compareValue="CONTENT">
+	     						BO_CONTENT like '%'||#search_keyword#||'%'
+	     					</isEqual>
+	     					<isEqual property="search_keycode" compareValue="WRITER" >
+	     						BO_WRITER like '%'||#search_keyword#||'%'
+	     					</isEqual>
+	     				</isNotEmpty>
+	     			</isNotEmpty>
+	     	</dynamic>	
+    	</sql>
+    
+    
     
      	<select id="boardList" resultClass="boardVO" parameterClass="map">
-     		<include refid="selectAll"/>
-     		<dynamic prepend="AND">
-     			<isNotEmpty property="search_keycode">
-     				<isNotEmpty property="search_keyword">
-     					<isEqual property="search_keycode" compareValue="TOTAL">
-     						<include refid="selectAll"/>
-     					</isEqual>
-     					<isEqual property="search_keycode" compareValue="TITLE">
-     						BO_TITLE like '%'||#search_keyword#||'%'
-     					</isEqual>
-     					<isEqual property="search_keycode" compareValue="CONTENT">
-     						BO_CONTENT like '%'||#search_keyword#||'%'
-     					</isEqual>
-     					<isEqual property="search_keycode" compareValue="WRITER" >
-     						BO_WRITER like '%'||#search_keyword#||'%'
-     					</isEqual>
-     				</isNotEmpty>
-     			</isNotEmpty>
-     		</dynamic>	
-     						ORDER BY BO_REG_DATE DESC
+     	SELECT * 	
+	     FROM	(SELECT ROWNUM rnum, A.*
+	     		 FROM (<include refid="selectAll"/>
+	     				<include refid="searchCondition"/>
+	     				ORDER BY BO_GROUP, BO_SEQ DESC) A) B
+	     WHERE 1=1
+	     <dynamic prepend="AND">
+			<isNotEmpty property="startCount">
+				<isNotEmpty property="endCount">
+					<![CDATA[
+						B.RNUM <= #startCount#
+						AND B.RNUM >= #endCount#
+					]]>
+				</isNotEmpty>
+			</isNotEmpty>	     
+	     </dynamic>
+	     ORDER BY B.RNUM DESC
+	     	
+     						
      	</select>
      	
      	
@@ -132,4 +154,35 @@
     		 FROM FILEITEM
     		WHERE FILE_SEQ = #file_seq#
     	</select>
+    	
+    	<select id="incrementSeq" parameterClass="boardVO" resultClass="string">
+    	SELECT MAX(NVL(bo_seq,0))+1
+    		FROM FREEBOARD
+    	WHERE BO_GROUP = #bo_group#
+    	</select>
+    	
+    	<update id="updateSeq" parameterClass="boardVO">
+    		UPDATE FREEBOARD
+    		 SET   BO_SEQ = BO_SEQ+1
+    		WHERE  BO_GROUP = #bo_group#
+    		 AND   BO_SEQ > #bo_seq#
+    	</update>
+    	
+    	<insert id="insertReplyInfo" parameterClass="boardVO">
+    		<selectKey keyProperty="bo_no">
+	         SELECT FREEBOARD_SEQ.NEXTVAL FROM DUAL
+	      	</selectKey>
+	         INSERT INTO FREEBOARD(BO_NO, BO_TITLE, BO_WRITER ,BO_NICKNAME, BO_PWD, BO_MAIL, BO_IP ,BO_CONTENT, BO_GROUP, BO_DEPTH, BO_SEQ)
+	         VALUES
+	         	(#bo_no#, #bo_title#, #bo_writer#, #bo_nickname#, #bo_pwd#, #bo_mail#, #bo_ip#, #bo_content#, #bo_group#, #bo_depth#, #bo_seq#)
+    	</insert>
+    	
+    	<select id="totalCount" parameterClass="map" resultClass="int">
+    		SELECT COUNT(BO_NO)
+    			FROM FREEBOARD
+    		WHERE BO_STATUS = 'y'
+    		<include refid="searchCondition"/>
+    		
+    	</select>
+    	
     </sqlMap>

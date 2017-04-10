@@ -97,6 +97,27 @@ public class IBoardServiceImpl implements IBoardService {
 		return fileItemInfo;
 	}
 
+	@Override
+	public void insertBoardReplyInfo(FreeBoardVO freeboardInfo) {
+		try{
+			dao.insertBoardReplyInfo(freeboardInfo);
+		}catch(SQLException e1){
+			e1.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public int getTotalCount(Map<String, String> params) {
+		int totalCount = 0;
+		try{
+			totalCount = dao.getTotalCount(params);
+		}catch(SQLException e1){
+			e1.printStackTrace();
+		}
+		return totalCount;
+	}
+
 	
 
 }
